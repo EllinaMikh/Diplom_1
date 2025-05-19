@@ -10,7 +10,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BurgerTest {
+public class
+BurgerTest {
     private Faker faker;
     @Mock
     private Bun mockBun;
@@ -61,13 +62,16 @@ public class BurgerTest {
      */
     @Test
     public void testMoveIngredient() {
-        Ingredient ingredient1 = new Ingredient(IngredientType.FILLING, "Cheese", 50.0f);
-        Ingredient ingredient2 = new Ingredient(IngredientType.SAUCE, "Ketchup", 20.0f);
-        burger.addIngredient(ingredient1);
-        burger.addIngredient(ingredient2);
+        Ingredient mockIngredient1 = Mockito.mock(Ingredient.class);
+        Ingredient mockIngredient2 = Mockito.mock(Ingredient.class);
+
+        burger.addIngredient(mockIngredient1);
+        burger.addIngredient(mockIngredient2);
 
         burger.moveIngredient(0, 1);
-        Assert.assertEquals("Ингредиенты не поменялись местами", ingredient1, burger.ingredients.get(1));
+
+        Assert.assertEquals("Ингредиенты не поменялись местами", mockIngredient1, burger.ingredients.get(1));
+        Assert.assertEquals("Ингредиенты не поменялись местами", mockIngredient2, burger.ingredients.get(0));
     }
 
     /**
