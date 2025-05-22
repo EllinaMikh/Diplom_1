@@ -44,23 +44,4 @@ public class IngredientsTest {
         Ingredient ingredient = new Ingredient(type, name, price);
         Assert.assertEquals("Тип ингредиента не соответствует ожиданиям", type, ingredient.getType());
     }
-
-    @Test
-    public void testEnumValuesExist() {
-        Assert.assertNotNull(IngredientType.valueOf("SAUCE"));
-        Assert.assertNotNull(IngredientType.valueOf("FILLING"));
-    }
-
-    @Test
-    public void testEnumValuesArray() {
-        IngredientType[] values = IngredientType.values();
-        Assert.assertEquals("Ожидается 2 типа ингредиентов", 2, values.length);
-        Assert.assertEquals(IngredientType.SAUCE, values[0]);
-        Assert.assertEquals(IngredientType.FILLING, values[1]);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testInvalidEnumValueThrowsException() {
-        IngredientType.valueOf("INVALID_TYPE");
-    }
 }

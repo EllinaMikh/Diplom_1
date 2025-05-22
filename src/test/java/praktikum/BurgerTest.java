@@ -88,11 +88,18 @@ BurgerTest {
         Assert.assertEquals("Цена бургера рассчитана неверно", expectedPrice, burger.getPrice(), 0.001f);
     }
 
-    /**
-     * Проверяет создание чека.
-     */
     @Test
-    public void testGetReceipt() {
+    public void testReceiptContainsBunName() {
+        Mockito.when(mockBun.getName()).thenReturn("Test Bun");
+        Mockito.when(mockBun.getPrice()).thenReturn(100.0f);
+        burger.setBuns(mockBun);
+
+        String receipt = burger.getReceipt();
+        Assert.assertTrue("Чек должен содержать название булочки", receipt.contains("Test Bun"));
+    }
+
+    @Test
+    public void testReceiptContainsIngredient() {
         Mockito.when(mockBun.getName()).thenReturn("Test Bun");
         Mockito.when(mockBun.getPrice()).thenReturn(100.0f);
         burger.setBuns(mockBun);
@@ -102,7 +109,6 @@ BurgerTest {
         burger.addIngredient(mockIngredient);
 
         String receipt = burger.getReceipt();
-        Assert.assertTrue("Чек должен содержать название булочки", receipt.contains("Test Bun"));
         Assert.assertTrue("Чек должен содержать ингредиент", receipt.contains("Test Ingredient"));
     }
 }
